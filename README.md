@@ -11,11 +11,12 @@ npm install incremental-number-formatter
 ```
 
 ## Usage
+
 ### Importing the Library
 
 ```typescript
-import { NumberFormatter } from 'incremental-number-formatter';
-import Decimal from 'decimal.js';
+import { NumberFormatter } from "incremental-number-formatter";
+import Decimal from "decimal.js";
 ```
 
 ### Creating a Formatter
@@ -24,25 +25,32 @@ First, create a reusable formatter with options:
 
 ```typescript
 const formatter = new NumberFormatter({
-  notation: 'letter', // 'scientific' or 'letter'
-  decimals: 2,        // Number of decimal places to display
+  notation: "letter", // 'scientific' or 'letter'
+  decimals: 2, // Number of decimal places to display
 });
 ```
 
 ### Formatting Numbers
 
+Letter notation example:
+
 ```typescript
+const letterFormatter = new NumberFormatter({
+  notation: "letter",
+  decimals: 2,
+});
 const num = new Decimal(1234567); // 1,234,567
-console.log(formatter.format(num)); // "1.23m" (letter notation)
+console.log(letterFormatter.format(num)); // "1.23m" (letter notation)
 ```
 
 Scientific notation example:
 
 ```typescript
 const sciFormatter = new NumberFormatter({
-  notation: 'scientific',
+  notation: "scientific",
   decimals: 2,
 });
+const num = new Decimal(1234567); // 1,234,567
 console.log(sciFormatter.format(num)); // "1.23e+6"
 ```
 
@@ -54,7 +62,7 @@ If the number exceeds zz (e.g., beyond 1e2042), the library throws an error:
 
 ```typescript
 try {
-  console.log(formatter.format(new Decimal('1e2043')));
+  console.log(formatter.format(new Decimal("1e2043")));
 } catch (error) {
   console.error(error.message); // "Exponent too large: ..."
 }
@@ -93,4 +101,3 @@ npm test
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
